@@ -57,12 +57,25 @@ button:hover {
   background-color: white;
 }
 
-.display-history {
+.display-history-container {
   grid-row: 1 / 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.display-history {
+}
+
+.display-input-container {
+  grid-row: 2 / 4;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .display-input {
-  grid-row: 2 / 4;
+  font-size: 5rem;
+  /* line-height: 3.75rem; */
 }
 
 /* ####################################################### */
