@@ -2,6 +2,7 @@
 
 // ####################### DOM SELECTORS #######################
 const $displayInput = document.querySelector(".display-input");
+const $displayInputContainer = document.querySelector(".display-input-container");
 const $displayHistory = document.querySelector(".display-history");
 const $btnsNumbers = document.querySelectorAll(".number");
 const $btnsOperators = document.querySelectorAll(".operator");
@@ -47,6 +48,8 @@ const divide = (a, b) => b / a;
 const exponent = (a, b) => Math.pow(b, a);
 const root = (a, b) => Math.pow(b, 1 / a);
 
+const updateEvent = new Event("update");
+
 function operate(a, b, operator) {
   a = Number(a);
   b = Number(b);
@@ -67,6 +70,7 @@ function handleNumbers(num) {
   // Attach pressed number onto numberA and display it on the GUI
   numberA += num;
   $displayInput.value = numberA;
+  $displayInput.dispatchEvent(updateEvent);
 }
 
 function handleOperators(operator) {
@@ -93,6 +97,8 @@ function handleOperators(operator) {
 
   // Indicate that the user has last pressed an operator, so that a future operator can be skipped in case the user wants to change to another operator
   operatorWasPressedLast = true;
+
+  $displayInput.dispatchEvent(updateEvent);
 }
 
 function handleCalc() {
@@ -108,12 +114,16 @@ function handleCalc() {
 
   $displayHistory.textContent = `${numberB} ${activeOperator} ${numberA} =`;
   $displayInput.value = operate(numberA, numberB, activeOperator);
+
+  $displayInput.dispatchEvent(updateEvent);
 }
 
 function handleDelete() {
   // Delete the last char of the numberA string and update the GUI
   numberA = numberA.slice(0, -1);
   $displayInput.value = numberA;
+
+  $displayInput.dispatchEvent(updateEvent);
 }
 
 function handleClear() {
@@ -149,6 +159,29 @@ function handleKeyPresses(e) {
 }
 
 ////////////////////////////////////////////////
-$displayInput.addEventListener("input", function () {
-  console.log("change");
+
+let previousLength = 0;
+let ratios = [];
+const originalFontSize = window.getComputedStyle($displayInput).getPropertyValue("font-size").slice(0, -2);
+
+$displayInput.addEventListener("update", function () {
+  let fontSize = window.getComputedStyle($displayInput).getPropertyValue("font-size").slice(0, -2);
+  const currentLength = $displayInput.value.length;
+
+  if (currentLength < previousLength) {
+    const ratio = ratios.pop();
+    fontSize *= 1 / ratio;
+  }
+  if (currentLength > previousLength) {
+    const inputWidth = $displayInput.scrollWidth;
+    const containerWidth = $displayInputContainer.offsetWidth;
+    const ratio = containerWidth / inputWidth;
+
+    ratios.push(ratio);
+    fontSize *= ratio;
+  }
+  if (currentLength === 1) fontSize = originalFontSize;
+
+  previousLength = $displayInput.value.length;
+  $displayInput.style.fontSize = `${fontSize}px`;
 });
