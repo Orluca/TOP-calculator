@@ -63,13 +63,18 @@ function operate(a, b, operator) {
 }
 
 // ####################### FUNCTIONS #######################
+function displayInput(num) {
+  $displayInput.value = Number(num).toLocaleString();
+}
+
 function handleNumbers(num) {
   // The user did not change his mind about which operator to use, so set operatorWasPressedLast to false
   operatorWasPressedLast = false;
 
   // Attach pressed number onto numberA and display it on the GUI
   numberA += num;
-  $displayInput.value = numberA;
+  // $displayInput.value = numberA;
+  displayInput(numberA);
   $displayInput.dispatchEvent(updateEvent);
 }
 
@@ -89,8 +94,8 @@ function handleOperators(operator) {
   activeOperator = operator;
 
   // Update the number displays on the GUI
-  $displayHistory.textContent = `${numberB} ${operator}`;
-  $displayInput.value = numberB;
+  $displayHistory.textContent = `${Number(numberB).toLocaleString()} ${operator}`;
+  displayInput(numberB);
 
   // Reset numberA
   numberA = "";
@@ -112,8 +117,9 @@ function handleCalc() {
   // Disable calculate if the user hasn't finished typing in a proper calculation in yet
   if (!activeOperator || operatorWasPressedLast) return;
 
-  $displayHistory.textContent = `${numberB} ${activeOperator} ${numberA} =`;
-  $displayInput.value = operate(numberA, numberB, activeOperator);
+  $displayHistory.textContent = `${Number(numberB).toLocaleString()} ${activeOperator} ${Number(numberA).toLocaleString()} =`;
+  // $displayInput.value = operate(numberA, numberB, activeOperator);
+  displayInput(operate(numberA, numberB, activeOperator));
 
   $displayInput.dispatchEvent(updateEvent);
 }
@@ -140,7 +146,8 @@ function handleDecimal() {
   // Add a decimal point to the end of numberA, but only if it doesn't already have one. Then update the GUI
   if (numberA.includes(".")) return;
   numberA += ".";
-  $displayInput.value = numberA;
+  // $displayInput.value = numberA;
+  // $displayInput.value += ",";
 }
 
 function handleNegation() {
