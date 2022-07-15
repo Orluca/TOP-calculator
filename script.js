@@ -1,7 +1,6 @@
 "use strict";
 
 // ####################### DOM SELECTORS #######################
-const $calculatorContainer = document.querySelector(".calculator-container");
 const $displayInput = document.querySelector(".display-input");
 const $displayHistory = document.querySelector(".display-history");
 const $btnsNumbers = document.querySelectorAll(".number");
@@ -71,6 +70,13 @@ function handleNumbers(num) {
 }
 
 function handleOperators(operator) {
+  // Cancel the function if the user tries to divide by 0
+  if (activeOperator === "/" && numberA === "0") {
+    alert("You can't divide by 0");
+    numberA = "";
+    return;
+  }
+
   // Check if the user has previously pressed an operate button. If yes, execute the corresponding calculation
   // Skip this line if the last thing the user has pressed was an operator, i.e. he misclicked or changed his mind and wants to use another operator
   if (!operatorWasPressedLast) numberB = activeOperator ? operate(numberA, numberB, activeOperator) : numberA;
@@ -90,6 +96,13 @@ function handleOperators(operator) {
 }
 
 function handleCalc() {
+  // Cancel the function if the user tries to divide by 0
+  if (activeOperator === "/" && numberA === "0") {
+    alert("You can't divide by 0");
+    numberA = "";
+    return;
+  }
+
   // Disable calculate if the user hasn't finished typing in a proper calculation in yet
   if (!activeOperator || operatorWasPressedLast) return;
 
@@ -114,7 +127,8 @@ function handleClear() {
 }
 
 function handleDecimal() {
-  // Add a decimal point to the end of the numberA string, then update the GUI
+  // Add a decimal point to the end of numberA, but only if it doesn't already have one. Then update the GUI
+  if (numberA.includes(".")) return;
   numberA += ".";
   $displayInput.value = numberA;
 }
