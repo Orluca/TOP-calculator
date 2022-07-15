@@ -64,10 +64,20 @@ function operate(a, b, operator) {
 
 // ####################### FUNCTIONS #######################
 function displayInput(num) {
-  $displayInput.value = Number(num).toLocaleString();
+  // $displayInput.value = Number(num).toLocaleString();
+
+  const formattingOptions = {
+    style: "decimal",
+    maximumFractionDigits: "20",
+  };
+
+  $displayInput.value = Number(num).toLocaleString(undefined, formattingOptions);
 }
 
 function handleNumbers(num) {
+  // Cap the amount of digits a number can have at 16
+  if (numberA.replace(".", "").length > 15) return;
+
   // The user did not change his mind about which operator to use, so set operatorWasPressedLast to false
   operatorWasPressedLast = false;
 
@@ -127,7 +137,8 @@ function handleCalc() {
 function handleDelete() {
   // Delete the last char of the numberA string and update the GUI
   numberA = numberA.slice(0, -1);
-  $displayInput.value = numberA;
+  // $displayInput.value = numberA;
+  displayInput(numberA);
 
   $displayInput.dispatchEvent(updateEvent);
 }
