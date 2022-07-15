@@ -71,11 +71,14 @@ button:hover {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  overflow: hidden;
 }
 
 .display-input {
+  display: inline-block;
   font-size: 5rem;
-  /* line-height: 3.75rem; */
+  overflow: auto;
+  text-align: end;
 }
 
 /* ####################################################### */
