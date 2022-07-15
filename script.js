@@ -157,8 +157,6 @@ function handleDecimal() {
   // Add a decimal point to the end of numberA, but only if it doesn't already have one. Then update the GUI
   if (numberA.includes(".")) return;
   numberA += ".";
-  // $displayInput.value = numberA;
-  // $displayInput.value += ",";
 }
 
 function handleNegation() {
@@ -167,16 +165,35 @@ function handleNegation() {
   $displayInput.value = numberA;
 }
 
-function handleKeyPresses(e) {
-  if (e.key >= 0 && e.key <= 9) handleNumbers(e.key);
-  if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") handleOperators(e.key);
-  if (e.key === "." || e.key === ",") handleDecimal();
-  if (e.key === "Enter") handleCalc();
-  if (e.key === "Backspace") handleDelete();
-  if (e.key === "Escape") handleClear();
+function handleKeyLights(id) {
+  const ids = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", "Backspace", "Escape", ",", ".", "/", "*", "-", "+"];
+
+  if (!ids.includes(id)) return;
+  if (id === ".") id = ",";
+
+  const element = document.querySelector(`[data-id="${id}"]`);
+
+  element.classList.add("pressed-key");
+
+  const removeClass = setTimeout(function () {
+    element.classList.remove("pressed-key");
+  }, 100);
+
+  // removeClass();
 }
 
-////////////////////////////////////////////////
+function handleKeyPresses(e) {
+  if (e.key >= 0 && e.key <= 9) handleNumbers(e.key);
+  else if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") handleOperators(e.key);
+  else if (e.key === "." || e.key === ",") handleDecimal();
+  else if (e.key === "Enter") handleCalc();
+  else if (e.key === "Backspace") handleDelete();
+  else if (e.key === "Escape") handleClear();
+
+  handleKeyLights(e.key);
+}
+
+// ################# DYNAMIC FONT SIZE DISPLAY #################
 
 let previousLength = 0;
 let ratios = [];

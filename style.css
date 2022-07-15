@@ -25,6 +25,10 @@ body {
   background-color: rgb(193, 94, 94);
 }
 
+button {
+  transition: none;
+}
+
 button:hover {
   cursor: pointer;
   background-color: rgb(229, 194, 255);
@@ -203,4 +207,12 @@ button:hover {
 .calculate {
   grid-row: 8 / 9;
   grid-column: 4 / 5;
+}
+
+/* ####################################################### */
+/* #################### UTILITY CLASSES ################## */
+/* ####################################################### */
+
+.pressed-key {
+  background-color: chartreuse;
 }
