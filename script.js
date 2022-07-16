@@ -35,11 +35,12 @@ $btnsOperators.forEach((operator) => {
 
 $allButtons.forEach((button) => {
   button.addEventListener("click", function () {
-    // Light up the pressed key (for mobile especially)
-    lightUpButton(this);
-
     // Lose focus from every clicked button so that the "Enter" key can't accidentally trigger them
     this.blur();
+  });
+  button.addEventListener("touchstart", function () {
+    // Light up the pressed key (for mobile especially)
+    lightUpButton(this);
   });
 });
 
@@ -218,6 +219,8 @@ function handleNegation() {
 function lightUpButton(element) {
   element.classList.add("pressed-key");
 
+  // element.style.fontSize = "0.1rem";
+
   setTimeout(function () {
     element.classList.remove("pressed-key");
   }, 100);
@@ -232,13 +235,6 @@ function handleButtonLights(id) {
   const element = document.querySelector(`[data-id="${id}"]`);
 
   lightUpButton(element);
-  // const element = document.querySelector(`[data-id="${id}"]`);
-
-  // element.classList.add("pressed-key");
-
-  // setTimeout(function () {
-  //   element.classList.remove("pressed-key");
-  // }, 100);
 }
 
 function handleKeyPresses(e) {
