@@ -42,7 +42,8 @@ button:hover {
 
 @media (hover: hover) {
   button:hover {
-    background-color: rgb(229, 194, 255);
+    /* background-color: rgb(218, 218, 218); */
+    border: 2px solid rgba(255, 255, 255, 0.75);
   }
 }
 
@@ -102,7 +103,7 @@ button:hover {
   text-align: end;
   width: 100%;
   background-color: transparent;
-  border: none;
+  /* border: none; */
 }
 
 .display-input:focus {

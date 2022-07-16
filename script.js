@@ -35,11 +35,13 @@ $btnsOperators.forEach((operator) => {
 
 $allButtons.forEach((button) => {
   button.addEventListener("click", function () {
+    // Light up the pressed key
+    lightUpButton(this);
     // Lose focus from every clicked button so that the "Enter" key can't accidentally trigger them
     this.blur();
   });
   button.addEventListener("touchstart", function () {
-    // Light up the pressed key (for mobile especially)
+    // Light up the touched key (for mobile)
     lightUpButton(this);
   });
 });
@@ -181,6 +183,9 @@ function handleCalc() {
 }
 
 function handleDelete() {
+  // The delete key should not be usable on a finished calculation
+  if (calcWasPressedLast) return;
+
   calcWasPressedLast = false;
 
   // Delete the last char of the numberA string and update the GUI

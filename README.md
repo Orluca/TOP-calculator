@@ -12,14 +12,13 @@ https://orluca.github.io/TOP-calculator/
 - [x] Add 1000 separators for big numbers (1.000.000,56)
 - [x] Make buttons light up when pressing their respective keys
 - [x] root and exponent not working.
-- [x] Having a big number with shrunken fontsize, and then pressing ESC will cause the font to stay small for
-      the initial 0
+- [x] Having a big number with shrunken fontsize, and then pressing ESC will cause the font to stay small for the initial 0
 - [x] BUG: make calculation (eg. x + y), press calc. then start typing new number
 - [x] make calculation and press calc. now typing numbers should reset calculator?
 - [x] proper display for exponents and roots in history display
 - [x] fancy font for display?
 - [x] make root and exponent look good in history display
-- [ ] Code isn't DRY yet, for example the "divide by 0" failsafe. REFACTOR!
 - [x] make horizontal layout
+- [x] deal with sticky keys on mobile
+- [ ] Code isn't DRY yet, for example the "divide by 0" failsafe. REFACTOR!
 - [ ] pressing the delete key after a calculation should either reset the calc or simply not work
-- [ ] deal with sticky keys on mobile
