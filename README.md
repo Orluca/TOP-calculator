@@ -2,6 +2,8 @@
 
 Calculator project from the Odin Project
 
+https://orluca.github.io/TOP-calculator/
+
 ### To implement
 
 - [x] A way to handle long numbers. Ideally shrink the font size, or easier, create a line break
