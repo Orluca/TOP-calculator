@@ -38,7 +38,6 @@ button {
 
 button:hover {
   cursor: pointer;
-  /* background-color: rgb(229, 194, 255); */
 }
 
 @media (hover: hover) {
@@ -102,7 +101,8 @@ button:hover {
   /* overflow: auto; */
   text-align: end;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
+  border: none;
 }
 
 .display-input:focus {
