@@ -288,7 +288,7 @@ button:hover {
 
 @media only screen and (max-height: 830px) {
   .calculator-container {
-    height: 90%;
+    height: 100%;
   }
 }
 
@@ -364,6 +364,6 @@ button:hover {
 @media only screen and (max-height: 500px) {
   .calculator-container {
     min-height: 380px;
-    height: 90%;
+    height: 100%;
   }
 }
