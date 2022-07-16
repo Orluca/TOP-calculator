@@ -93,13 +93,13 @@ button:hover {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  overflow: auto;
+  overflow: hidden;
   border-radius: 5px;
 }
 
 .display-input {
   font-size: 5rem;
-  overflow: auto;
+  /* overflow: auto; */
   text-align: end;
   width: 100%;
   background-color: rgba(0, 0, 0, 0);
