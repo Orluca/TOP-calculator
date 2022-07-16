@@ -280,9 +280,9 @@ button:hover {
 /* #################### MEDIA QUERIES ################## */
 /* ####################################################### */
 
-@media only screen and (max-height: 750px) {
+@media only screen and (max-height: 830px) {
   .calculator-container {
-    height: 100vh;
+    height: 90%;
   }
 }
 
@@ -355,9 +355,9 @@ button:hover {
   }
 }
 
-@media only screen and (max-height: 450px) {
+@media only screen and (max-height: 500px) {
   .calculator-container {
     min-height: 380px;
-    height: 100vh;
+    height: 90%;
   }
 }

@@ -20,4 +20,6 @@ https://orluca.github.io/TOP-calculator/
 - [x] fancy font for display?
 - [x] make root and exponent look good in history display
 - [ ] Code isn't DRY yet, for example the "divide by 0" failsafe. REFACTOR!
-- [ ] make horizontal layout
+- [x] make horizontal layout
+- [ ] pressing the delete key after a calculation should either reset the calc or simply not work
+- [ ] deal with sticky keys on mobile
