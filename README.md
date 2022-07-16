@@ -20,5 +20,5 @@ https://orluca.github.io/TOP-calculator/
 - [x] make root and exponent look good in history display
 - [x] make horizontal layout
 - [x] deal with sticky keys on mobile
+- [x] pressing the delete key after a calculation should either reset the calc or simply not work
 - [ ] Code isn't DRY yet, for example the "divide by 0" failsafe. REFACTOR!
-- [ ] pressing the delete key after a calculation should either reset the calc or simply not work
