@@ -15,7 +15,7 @@ Calculator project from the Odin Project
 - [x] BUG: make calculation (eg. x + y), press calc. then start typing new number
 - [x] make calculation and press calc. now typing numbers should reset calculator?
 - [x] proper display for exponents and roots in history display
-- [ ] fancy font for display?
+- [x] fancy font for display?
+- [x] make root and exponent look good in history display
 - [ ] Code isn't DRY yet, for example the "divide by 0" failsafe. REFACTOR!
 - [ ] make horizontal layout
-- [ ] make root and exponent look good in history display

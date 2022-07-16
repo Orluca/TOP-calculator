@@ -22,32 +22,41 @@
         </div>
       </div>
       <!-- CLEAR / DELETE SECTION -->
-      <button class="clear" data-id="Escape">CLEAR</button>
-      <button class="delete" data-id="Backspace"><i class="fa-solid fa-delete-left"></i></button>
+      <div class="clear-delete-container">
+        <button class="clear" data-id="Escape">CLEAR</button>
+        <button class="delete" data-id="Backspace"><i class="fa-solid fa-delete-left"></i></button>
+      </div>
       <!-- ROOT / EXPONENT SECTION -->
       <div class="root-exponent-container">
         <button class="operator root" data-id="√"><sup>x</sup>√</button>
         <button class="operator exponent" data-id="^">y<sup>x</sup></button>
       </div>
       <!-- BASIC OPERATORS SECTION -->
-      <button class="operator divide" data-id="/"><i class="fa-solid fa-divide"></i></button>
-      <button class="operator multiply" data-id="*"><i class="fa-solid fa-xmark"></i></button>
-      <button class="operator subtract" data-id="-"><i class="fa-solid fa-minus"></i></button>
-      <button class="operator add" data-id="+"><i class="fa-solid fa-plus"></i></button>
+      <div class="basic-operators-container">
+        <button class="operator divide" data-id="/"><i class="fa-solid fa-divide"></i></button>
+        <button class="operator multiply" data-id="*"><i class="fa-solid fa-xmark"></i></button>
+        <button class="operator subtract" data-id="-"><i class="fa-solid fa-minus"></i></button>
+        <button class="operator add" data-id="+"><i class="fa-solid fa-plus"></i></button>
+      </div>
+
       <!-- NUMBERS PAD -->
-      <button class="number num0" data-id="0">0</button>
-      <button class="number num1" data-id="1">1</button>
-      <button class="number num2" data-id="2">2</button>
-      <button class="number num3" data-id="3">3</button>
-      <button class="number num4" data-id="4">4</button>
-      <button class="number num5" data-id="5">5</button>
-      <button class="number num6" data-id="6">6</button>
-      <button class="number num7" data-id="7">7</button>
-      <button class="number num8" data-id="8">8</button>
-      <button class="number num9" data-id="9">9</button>
+      <div class="numbers-container">
+        <button class="number num0" data-id="0">0</button>
+        <button class="number num1" data-id="1">1</button>
+        <button class="number num2" data-id="2">2</button>
+        <button class="number num3" data-id="3">3</button>
+        <button class="number num4" data-id="4">4</button>
+        <button class="number num5" data-id="5">5</button>
+        <button class="number num6" data-id="6">6</button>
+        <button class="number num7" data-id="7">7</button>
+        <button class="number num8" data-id="8">8</button>
+        <button class="number num9" data-id="9">9</button>
+        <button class="negation"><i class="fa-solid fa-plus-minus"></i></button>
+        <button class="decimal" data-id=",">.</button>
+      </div>
+
       <!-- OTHERS -->
-      <button class="negation"><i class="fa-solid fa-plus-minus"></i></button>
-      <button class="decimal" data-id=",">.</button>
+
       <button class="calculate" data-id="Enter"><i class="fa-solid fa-equals"></i></button>
     </div>
   </body>
