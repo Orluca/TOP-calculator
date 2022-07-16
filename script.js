@@ -17,6 +17,7 @@ let numberA = ""; // The number which the user is actively typing in; on the low
 let numberB = ""; // The result of all previous calculations; on the upper side of the GUID
 let activeOperator = ""; // Tracking if the user has already pressed an operator and which one
 let operatorWasPressedLast = false; // Tracking if the last thing the user has pressed is an operator. Necessary to allow user to change the activeOperator in case of misclicks or similar
+let calcWasPressedLast = false; // Track if the calc button (=) was pressed last
 
 // ####################### EVENT LISTENERS #######################
 $btnsNumbers.forEach((btn) =>
@@ -27,7 +28,7 @@ $btnsNumbers.forEach((btn) =>
 
 $btnsOperators.forEach((operator) => {
   operator.addEventListener("click", function (e) {
-    handleOperators(e.target.dataset.operator);
+    handleOperators(e.target.dataset.id);
   });
 });
 
@@ -75,6 +76,9 @@ function displayInput(num) {
 }
 
 function handleNumbers(num) {
+  // If the last thing the user pressed was the calc button and he now starts typing a number again, the whole calculator should be reset
+  if (calcWasPressedLast) handleClear();
+
   // Cap the amount of digits a number can have at 16
   if (numberA.replace(".", "").length > 15) return;
 
@@ -89,6 +93,8 @@ function handleNumbers(num) {
 }
 
 function handleOperators(operator) {
+  calcWasPressedLast = false;
+
   // Cancel the function if the user tries to divide by 0
   if (activeOperator === "/" && numberA === "0") {
     alert("You can't divide by 0");
@@ -128,22 +134,28 @@ function handleCalc() {
   if (!activeOperator || operatorWasPressedLast) return;
 
   $displayHistory.textContent = `${Number(numberB).toLocaleString()} ${activeOperator} ${Number(numberA).toLocaleString()} =`;
-  // $displayInput.value = operate(numberA, numberB, activeOperator);
   displayInput(operate(numberA, numberB, activeOperator));
 
+  // numberA = "";
+
   $displayInput.dispatchEvent(updateEvent);
+
+  calcWasPressedLast = true;
 }
 
 function handleDelete() {
+  calcWasPressedLast = false;
+
   // Delete the last char of the numberA string and update the GUI
   numberA = numberA.slice(0, -1);
-  // $displayInput.value = numberA;
   displayInput(numberA);
 
   $displayInput.dispatchEvent(updateEvent);
 }
 
 function handleClear() {
+  calcWasPressedLast = false;
+
   // Reset everything back to the default values
   numberA = "";
   numberB = "";
@@ -175,11 +187,9 @@ function handleKeyLights(id) {
 
   element.classList.add("pressed-key");
 
-  const removeClass = setTimeout(function () {
+  setTimeout(function () {
     element.classList.remove("pressed-key");
   }, 100);
-
-  // removeClass();
 }
 
 function handleKeyPresses(e) {

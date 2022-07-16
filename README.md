@@ -9,4 +9,12 @@ Calculator project from the Odin Project
 - [x] No more than 16 digits per number. 9007199254740991 is max safe int
 - [x] Add 1000 separators for big numbers (1.000.000,56)
 - [ ] Code isn't DRY yet, for example the "divide by 0" failsafe
-- [ ] Make buttons light up when pressing their respective keys
+- [x] Make buttons light up when pressing their respective keys
+- [x] root and exponent not working.
+- [ ] Having a big number with shrunken fontsize, and then pressing ESC will cause the font to stay small for
+      the initial 0
+- [ ] BUG: make calculation (eg. x + y), press calc. then start typing new number
+- [x] make calculation and press calc. now typing numbers should reset calculator?
+- [ ] fancy font for display?
+- [ ] make horizontal layout
+- [x] proper display for exponents and roots in history display

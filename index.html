@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator App</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script defer src="script.js"></script>
   </head>
   <body>
@@ -16,22 +17,22 @@
           <div class="display-history"></div>
         </div>
         <div class="display-input-container">
-          <input class="display-input" value="0" />
+          <input class="display-input" value="0" readonly />
         </div>
       </div>
       <!-- CLEAR / DELETE SECTION -->
       <button class="clear" data-id="Escape">CLEAR</button>
-      <button class="delete" data-id="Backspace">DELETE</button>
+      <button class="delete" data-id="Backspace"><i class="fa-solid fa-delete-left"></i></button>
       <!-- ROOT / EXPONENT SECTION -->
       <div class="root-exponent-container">
         <button class="operator root" data-id="√"><sup>x</sup>√</button>
         <button class="operator exponent" data-id="^">y<sup>x</sup></button>
       </div>
       <!-- BASIC OPERATORS SECTION -->
-      <button class="operator divide" data-id="/">/</button>
-      <button class="operator multiply" data-id="*">*</button>
-      <button class="operator subtract" data-id="-">-</button>
-      <button class="operator add" data-id="+">+</button>
+      <button class="operator divide" data-id="/"><i class="fa-solid fa-divide"></i></button>
+      <button class="operator multiply" data-id="*"><i class="fa-solid fa-xmark"></i></button>
+      <button class="operator subtract" data-id="-"><i class="fa-solid fa-minus"></i></button>
+      <button class="operator add" data-id="+"><i class="fa-solid fa-plus"></i></button>
       <!-- NUMBERS PAD -->
       <button class="number num0" data-id="0">0</button>
       <button class="number num1" data-id="1">1</button>
@@ -44,9 +45,9 @@
       <button class="number num8" data-id="8">8</button>
       <button class="number num9" data-id="9">9</button>
       <!-- OTHERS -->
-      <button class="negation">+/-</button>
+      <button class="negation"><i class="fa-solid fa-plus-minus"></i></button>
       <button class="decimal" data-id=",">.</button>
-      <button class="calculate" data-id="Enter">=</button>
+      <button class="calculate" data-id="Enter"><i class="fa-solid fa-equals"></i></button>
     </div>
   </body>
 </html>
