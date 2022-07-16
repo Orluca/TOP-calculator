@@ -163,6 +163,8 @@ function handleClear() {
   operatorWasPressedLast = false;
   $displayHistory.textContent = "";
   $displayInput.value = 0;
+
+  $displayInput.dispatchEvent(updateEvent);
 }
 
 function handleDecimal() {
