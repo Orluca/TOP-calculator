@@ -11,6 +11,7 @@ const $btnDelete = document.querySelector(".delete");
 const $btnClear = document.querySelector(".clear");
 const $btnDecimal = document.querySelector(".decimal");
 const $btnNegation = document.querySelector(".negation");
+const $allButtons = document.querySelectorAll("button");
 
 // ####################### GLOBAL VARIABLES #######################
 let numberA = ""; // The number which the user is actively typing in; on the lower side of the GUI
@@ -28,7 +29,14 @@ $btnsNumbers.forEach((btn) =>
 
 $btnsOperators.forEach((operator) => {
   operator.addEventListener("click", function (e) {
-    handleOperators(e.target.dataset.id);
+    handleOperators(e.target.closest(".operator").dataset.id);
+  });
+});
+
+// Lose focus from every clicked button so that the "Enter" key can't accidentally trigger them
+$allButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    this.blur();
   });
 });
 
@@ -65,14 +73,39 @@ function operate(a, b, operator) {
 
 // ####################### FUNCTIONS #######################
 function displayInput(num) {
-  // $displayInput.value = Number(num).toLocaleString();
-
   const formattingOptions = {
-    style: "decimal",
     maximumFractionDigits: "20",
   };
 
-  $displayInput.value = Number(num).toLocaleString(undefined, formattingOptions);
+  $displayInput.textContent = Number(num).toLocaleString(undefined, formattingOptions);
+}
+
+function displayHistory(operator) {
+  const formattingOptions = {
+    maximumFractionDigits: "20",
+  };
+
+  const a = Number(numberA).toLocaleString(undefined, formattingOptions);
+  const b = Number(numberB).toLocaleString(undefined, formattingOptions);
+  let html;
+
+  if (operator === "=") {
+    // return;
+    if (activeOperator === "^") {
+      html = `${b}<sup>${a}</sup>`;
+    } else if (activeOperator === "√") {
+      html = `<sup>${a}</sup>${activeOperator}${b}`;
+    } else {
+      html = `${b} ${activeOperator} ${a}`;
+    }
+    html += " =";
+  } else if (operator === "√" || operator === "^") {
+    html = `${b}${activeOperator}`;
+  } else {
+    html = `${b} ${activeOperator}`;
+  }
+
+  $displayHistory.innerHTML = html;
 }
 
 function handleNumbers(num) {
@@ -87,7 +120,6 @@ function handleNumbers(num) {
 
   // Attach pressed number onto numberA and display it on the GUI
   numberA += num;
-  // $displayInput.value = numberA;
   displayInput(numberA);
   $displayInput.dispatchEvent(updateEvent);
 }
@@ -110,7 +142,9 @@ function handleOperators(operator) {
   activeOperator = operator;
 
   // Update the number displays on the GUI
-  $displayHistory.textContent = `${Number(numberB).toLocaleString()} ${operator}`;
+  // $displayHistory.textContent = `${Number(numberB).toLocaleString()} ${operator}`;
+
+  displayHistory(operator);
   displayInput(numberB);
 
   // Reset numberA
@@ -133,10 +167,9 @@ function handleCalc() {
   // Disable calculate if the user hasn't finished typing in a proper calculation in yet
   if (!activeOperator || operatorWasPressedLast) return;
 
-  $displayHistory.textContent = `${Number(numberB).toLocaleString()} ${activeOperator} ${Number(numberA).toLocaleString()} =`;
+  // $displayHistory.innerHTML = `${Number(numberB).toLocaleString()} ${activeOperator} ${Number(numberA).toLocaleString()} =`;
+  displayHistory("=");
   displayInput(operate(numberA, numberB, activeOperator));
-
-  // numberA = "";
 
   $displayInput.dispatchEvent(updateEvent);
 
@@ -161,8 +194,8 @@ function handleClear() {
   numberB = "";
   activeOperator = "";
   operatorWasPressedLast = false;
-  $displayHistory.textContent = "";
-  $displayInput.value = 0;
+  $displayHistory.innerHTML = "";
+  $displayInput.textContent = 0;
 
   $displayInput.dispatchEvent(updateEvent);
 }
@@ -176,7 +209,7 @@ function handleDecimal() {
 function handleNegation() {
   // Check if the first char of numberA is a minus sign. If yes, remove it, if not, add one
   numberA = numberA.slice(0, 1) === "-" ? numberA.slice(1) : `-${numberA}`;
-  $displayInput.value = numberA;
+  $displayInput.textContent = numberA;
 }
 
 function handleKeyLights(id) {
@@ -213,7 +246,7 @@ const originalFontSize = window.getComputedStyle($displayInput).getPropertyValue
 
 $displayInput.addEventListener("update", function () {
   let fontSize = window.getComputedStyle($displayInput).getPropertyValue("font-size").slice(0, -2);
-  const currentLength = $displayInput.value.length;
+  const currentLength = $displayInput.textContent.length;
 
   if (currentLength < previousLength) {
     const ratio = ratios.pop();
@@ -229,6 +262,6 @@ $displayInput.addEventListener("update", function () {
   }
   if (currentLength === 1) fontSize = originalFontSize;
 
-  previousLength = $displayInput.value.length;
+  previousLength = $displayInput.textContent.length;
   $displayInput.style.fontSize = `${fontSize}px`;
 });
