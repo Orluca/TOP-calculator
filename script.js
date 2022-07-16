@@ -33,9 +33,12 @@ $btnsOperators.forEach((operator) => {
   });
 });
 
-// Lose focus from every clicked button so that the "Enter" key can't accidentally trigger them
 $allButtons.forEach((button) => {
   button.addEventListener("click", function () {
+    // Light up the pressed key (for mobile especially)
+    lightUpButton(this);
+
+    // Lose focus from every clicked button so that the "Enter" key can't accidentally trigger them
     this.blur();
   });
 });
@@ -212,7 +215,15 @@ function handleNegation() {
   $displayInput.textContent = numberA;
 }
 
-function handleKeyLights(id) {
+function lightUpButton(element) {
+  element.classList.add("pressed-key");
+
+  setTimeout(function () {
+    element.classList.remove("pressed-key");
+  }, 100);
+}
+
+function handleButtonLights(id) {
   const ids = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", "Backspace", "Escape", ",", ".", "/", "*", "-", "+"];
 
   if (!ids.includes(id)) return;
@@ -220,11 +231,14 @@ function handleKeyLights(id) {
 
   const element = document.querySelector(`[data-id="${id}"]`);
 
-  element.classList.add("pressed-key");
+  lightUpButton(element);
+  // const element = document.querySelector(`[data-id="${id}"]`);
 
-  setTimeout(function () {
-    element.classList.remove("pressed-key");
-  }, 100);
+  // element.classList.add("pressed-key");
+
+  // setTimeout(function () {
+  //   element.classList.remove("pressed-key");
+  // }, 100);
 }
 
 function handleKeyPresses(e) {
@@ -235,7 +249,7 @@ function handleKeyPresses(e) {
   else if (e.key === "Backspace") handleDelete();
   else if (e.key === "Escape") handleClear();
 
-  handleKeyLights(e.key);
+  handleButtonLights(e.key);
 }
 
 // ################# DYNAMIC FONT SIZE DISPLAY #################
