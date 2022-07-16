@@ -5,6 +5,7 @@
   --color-calculate: rgb(108, 192, 140);
   --color-clear: rgb(208, 74, 74);
   --color-display: rgb(239, 239, 239);
+  --color-app: rgb(29, 29, 29);
 }
 
 /* ####################################################### */
@@ -52,7 +53,7 @@ button:hover {
 /* ####################################################### */
 
 .calculator-container {
-  background-color: rgb(29, 29, 29);
+  background-color: var(--color-app);
   height: 750px;
   width: 450px;
   display: grid;
@@ -378,5 +379,12 @@ button:hover {
 @media only screen and (max-height: 325px) {
   button {
     font-size: 1.5rem;
+  }
+}
+
+/* To avoid a visual bug where the background color is slightly shining through */
+@media only screen and (max-height: 830px) and (max-width: 450px) {
+  body {
+    background-color: var(--color-app);
   }
 }
