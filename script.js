@@ -173,7 +173,6 @@ function handleCalc() {
   // Disable calculate if the user hasn't finished typing in a proper calculation in yet
   if (!activeOperator || operatorWasPressedLast) return;
 
-  // $displayHistory.innerHTML = `${Number(numberB).toLocaleString()} ${activeOperator} ${Number(numberA).toLocaleString()} =`;
   displayHistory("=");
   displayInput(operate(numberA, numberB, activeOperator));
 
@@ -218,7 +217,8 @@ function handleDecimal() {
 function handleNegation() {
   // Check if the first char of numberA is a minus sign. If yes, remove it, if not, add one
   numberA = numberA.slice(0, 1) === "-" ? numberA.slice(1) : `-${numberA}`;
-  $displayInput.textContent = numberA;
+  displayInput(numberA);
+  $displayInput.dispatchEvent(updateEvent);
 }
 
 function lightUpButton(element) {

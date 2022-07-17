@@ -56,6 +56,8 @@ button:hover {
   background-color: var(--color-app);
   height: 750px;
   width: 450px;
+  min-height: 285px;
+  min-width: 175px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(8, 1fr);
@@ -276,6 +278,20 @@ button:hover {
   background-color: var(--color-calculate);
 }
 
+.github-link {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  margin: 1rem;
+  font-size: clamp(1.1rem, 1.5vw + 1vh, 1.5rem);
+  color: white;
+}
+
+.github-link:hover {
+  color: rgb(131, 187, 255);
+}
+
 /* ####################################################### */
 /* #################### UTILITY CLASSES ################## */
 /* ####################################################### */
@@ -366,7 +382,6 @@ button:hover {
 @media only screen and (max-height: 500px) {
   .calculator-container {
     height: 100%;
-    min-height: 285px;
   }
 }
 
@@ -386,5 +401,27 @@ button:hover {
 @media only screen and (max-height: 830px) and (max-width: 450px) {
   body {
     background-color: var(--color-app);
+  }
+}
+
+@media only screen and (max-height: 830px) and (max-width: 550px) {
+  .github-link {
+    position: static;
+    z-index: 2;
+    margin: 1rem;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    color: black;
+  }
+}
+
+@media only screen and (max-height: 550px) and (max-width: 850px) {
+  .github-link {
+    position: static;
+    z-index: 2;
+    margin: 1rem;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    color: black;
   }
 }
