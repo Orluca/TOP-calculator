@@ -136,15 +136,19 @@ function handleNumbers(num) {
   $displayInput.dispatchEvent(updateEvent);
 }
 
+function checkDivisionByZero() {
+  if (activeOperator === "/" && numberA === "0") {
+    alert("You can't divide by 0");
+    numberA = "";
+    return true;
+  } else return false;
+}
+
 function handleOperators(operator) {
   calcWasPressedLast = false;
 
   // Cancel the function if the user tries to divide by 0
-  if (activeOperator === "/" && numberA === "0") {
-    alert("You can't divide by 0");
-    numberA = "";
-    return;
-  }
+  if (checkDivisionByZero()) return;
 
   // Check if the user has previously pressed an operate button. If yes, execute the corresponding calculation
   // Skip this line if the last thing the user has pressed was an operator, i.e. he misclicked or changed his mind and wants to use another operator
@@ -169,11 +173,7 @@ function handleOperators(operator) {
 
 function handleCalc() {
   // Cancel the function if the user tries to divide by 0
-  if (activeOperator === "/" && numberA === "0") {
-    alert("You can't divide by 0");
-    numberA = "";
-    return;
-  }
+  if (checkDivisionByZero()) return;
 
   // Disable calculate if the user hasn't finished typing in a proper calculation in yet
   if (!activeOperator || operatorWasPressedLast) return;
