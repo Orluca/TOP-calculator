@@ -22,5 +22,5 @@ https://orluca.github.io/TOP-calculator/
 - [x] deal with sticky keys on mobile
 - [x] pressing the delete key after a calculation should either reset the calc or simply not work
 - [x] nitpick: once calc snaps to sides, make background color the same as app color to avoid those small lines
+- [x] Github button
 - [ ] Code isn't DRY yet, for example the "divide by 0" failsafe. REFACTOR!
-- [ ] Github button

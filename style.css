@@ -102,11 +102,9 @@ button:hover {
 
 .display-input {
   font-size: 5rem;
-  /* overflow: auto; */
   text-align: end;
   width: 100%;
   background-color: transparent;
-  /* border: none; */
 }
 
 .display-input:focus {
